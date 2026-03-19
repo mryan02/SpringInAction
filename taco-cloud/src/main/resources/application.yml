@@ -1,4 +1,8 @@
 spring:
+    jpa:
+        hibernate:
+            ddl-auto: update   # or create-drop for dev
+        show-sql: true
     application:
         name: taco-cloud
     datasource:
@@ -8,5 +12,5 @@ spring:
         password:
     h2:
         console:
-        enabled: true
-        path: /h2-console
+            enabled: true
+            path: /h2-console

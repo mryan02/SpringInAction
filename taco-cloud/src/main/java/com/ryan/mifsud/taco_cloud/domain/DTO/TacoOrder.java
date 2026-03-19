@@ -5,20 +5,27 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Data
-@Table("TACO_ORDER")
+@Entity(name = "TACO_ORDER")
+@NoArgsConstructor
 public class TacoOrder  implements Serializable{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotBlank(message="Delivery name is required")
@@ -49,6 +56,7 @@ public class TacoOrder  implements Serializable{
     private String ccCVV;
 
     @NotEmpty(message="You must order at least 1 taco")
+    @OneToMany(cascade = jakarta.persistence.CascadeType.ALL)
     private List<Taco> tacos;
 
     private Date placedAt = new Date();

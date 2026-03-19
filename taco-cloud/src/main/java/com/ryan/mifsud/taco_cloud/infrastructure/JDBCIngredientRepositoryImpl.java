@@ -1,49 +1,49 @@
-package com.ryan.mifsud.taco_cloud.infrastructure;
+// package com.ryan.mifsud.taco_cloud.infrastructure;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
+// import java.sql.ResultSet;
+// import java.sql.SQLException;
+// import java.util.List;
+// import java.util.Optional;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+// import org.springframework.jdbc.core.JdbcTemplate;
+// import org.springframework.stereotype.Repository;
 
-import com.ryan.mifsud.taco_cloud.domain.DTO.Ingredient;
+// import com.ryan.mifsud.taco_cloud.domain.DTO.Ingredient;
 
-import lombok.RequiredArgsConstructor;
+// import lombok.RequiredArgsConstructor;
 
-@Repository
-@RequiredArgsConstructor
-public class JDBCIngredientRepositoryImpl implements IngredientRepository {
+// @Repository
+// @RequiredArgsConstructor
+// public class JDBCIngredientRepositoryImpl implements IngredientRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-
-
-    @Override
-    public List<Ingredient> findAll() {
-        return jdbcTemplate.query("SELECT id, name, type FROM Ingredient", this::mapRowToIngredient).stream().toList();
-    }
-
-    @Override
-    public Optional<Ingredient> findById(String id) {
-        final List<Ingredient> results = jdbcTemplate.query("SELECT id, name, type FROM Ingredient WHERE id = ?",
-         this::mapRowToIngredient, id);
-        return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
-    }
+//     private final JdbcTemplate jdbcTemplate;
 
 
-    @Override
-    public Ingredient save(Ingredient ingredient) {
-        jdbcTemplate.update("INSERT INTO Ingredient (id, name, type) VALUES (?, ?, ?)",
-         ingredient.getId(), ingredient.getName(), ingredient.getType().toString());
+//     @Override
+//     public List<Ingredient> findAll() {
+//         return jdbcTemplate.query("SELECT id, name, type FROM Ingredient", this::mapRowToIngredient).stream().toList();
+//     }
+
+//     @Override
+//     public Optional<Ingredient> findById(String id) {
+//         final List<Ingredient> results = jdbcTemplate.query("SELECT id, name, type FROM Ingredient WHERE id = ?",
+//          this::mapRowToIngredient, id);
+//         return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+//     }
+
+
+//     @Override
+//     public Ingredient save(Ingredient ingredient) {
+//         jdbcTemplate.update("INSERT INTO Ingredient (id, name, type) VALUES (?, ?, ?)",
+//          ingredient.getId(), ingredient.getName(), ingredient.getType().toString());
         
-         return ingredient;
-    }
+//          return ingredient;
+//     }
 
-    private Ingredient mapRowToIngredient(final ResultSet row, int rowNum) throws SQLException {
-        return new Ingredient(row.getString("id"), 
-        row.getString("name"), 
-        Ingredient.Type.valueOf(row.getString("type")));
-    }
+//     private Ingredient mapRowToIngredient(final ResultSet row, int rowNum) throws SQLException {
+//         return new Ingredient(row.getString("id"), 
+//         row.getString("name"), 
+//         Ingredient.Type.valueOf(row.getString("type")));
+//     }
 
-}
+// }

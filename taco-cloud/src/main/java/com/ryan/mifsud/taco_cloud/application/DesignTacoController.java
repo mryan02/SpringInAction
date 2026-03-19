@@ -1,6 +1,7 @@
 package com.ryan.mifsud.taco_cloud.application;
 
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,9 @@ public class DesignTacoController {
     public void addIngredientsToModel(Model model) {
         log.info("Adding ingredients to model");
         
-        final List<Ingredient> ingredients = ingredientRepository.findAll();
+        final List<Ingredient> ingredients =StreamSupport
+        .stream(ingredientRepository.findAll().spliterator(), false)
+        .toList();  
 
         final Type[] types = Ingredient.Type.values();
         for (Type type : types) {

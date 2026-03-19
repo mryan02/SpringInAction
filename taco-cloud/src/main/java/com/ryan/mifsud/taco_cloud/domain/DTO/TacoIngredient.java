@@ -1,14 +1,15 @@
 package com.ryan.mifsud.taco_cloud.domain.DTO;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-@Table("TACO_INGREDIENT")
+@Entity(name="TACO_INGREDIENT")
+@NoArgsConstructor(access = lombok.AccessLevel.PRIVATE, force = true)
 public class TacoIngredient {
     @Id
     private final String ingredientId;
