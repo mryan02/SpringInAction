@@ -30,3 +30,15 @@ create table if not exists INGREDIENT (
     name varchar(255),
     type varchar(255)
 );
+
+create table if not exists APP_USER (
+    id bigint primary key auto_increment,
+    username varchar(255) not null unique,
+    password varchar(255) not null,
+    fullname varchar(255) not null,
+    street varchar(255) not null,
+    city varchar(255) not null,
+    state varchar(255) not null,
+    zip varchar(255) not null,
+    phonenumber varchar(255) not null
+);

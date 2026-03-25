@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th:"http://www.thymeleaf.org">
+    <head>
+        <title>Taco CLoud</title>
+    </head>
+    <body>
+        <h1>
+            Login
+        </h1>
+        <img th:src="@{/images/taco.png}"/>
+        <p>New here? Click to <a th:href="@{/register}">register</a></p>
+        <form method="POST" th:action="@{/login}" id="loginForm">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username"/>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"/>
+            </div>
+            <button type="submit" value="Login">Login</button>
+        </form>
+    </body>
+</html>
